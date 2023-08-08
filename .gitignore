@@ -1,0 +1,21 @@
+### ignore all ###
+/*
+/.**
+
+### except following files ###
+!/.gitignore
+!/README.md
+!/src/
+!/src/**
+!/out/
+!/out/**
+
+!/test/
+/test/*
+!/test/src/
+!/test/src/**
+
+### ignore
+__pycache__
+.Rproj.user
+.DS_Store
