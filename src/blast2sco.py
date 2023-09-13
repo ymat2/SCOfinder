@@ -1,14 +1,12 @@
 import argparse
 import glob
-import os
 
 
 def main():
   parser = argparse.ArgumentParser()
   parser.add_argument("-d", "--directory", type=str, help="directory where .blastp are")
   parser.add_argument("-r", "--reference", type=str, help="reference species")
-  parser.add_argument("-g", "--group", nargs="*", help="select species by class name")
-  parser.add_argument("-m", "--minsp", type=int, help="minimum number of species to have SCO", default=3)
+  parser.add_argument("-m", "--min_sp", type=int, help="minimum number of species to have SCO", default=3)
   parser.add_argument("-o", "--output", help="output filename")
   args = parser.parse_args()
 
@@ -35,7 +33,7 @@ def main():
 
   with open(args.output, "w") as f:
     for gn in sco:
-      if len(sco[gn]) >= args.minsp:
+      if len(sco[gn]) >= args.min_sp:
         f.write(gn+"\t"+"\t".join(sco[gn])+"\n")
 
 

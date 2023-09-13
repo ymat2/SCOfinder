@@ -17,6 +17,15 @@
 ### Input file
 - textfile with a column of NCBI accession ID
 
+   e.g.
+   ```
+   GCF_000001405.40
+   GCF_000001635.27
+   GCF_015227675.2
+   GCF_000003025.6
+   GCF_002263795.2
+   ```
+
 
 ## Pipeline
 
@@ -24,7 +33,7 @@
 ## get sequences from NCBI
 qsub src/get_seq.sh out/accession.list
 
-## run vs_human blastp
+## run vs_reference_species blastp
 qsub src/make_blast_db.sh accession.list
 qsub src/run_blast.sh accession.list GCF_000001405.40
 bzip2 blst/*.pep.fa.*
@@ -33,7 +42,6 @@ bzip2 blst/*.pep.fa.*
 qsub src/detect_sco.sh
 
 ## alignment and trimming
-ls sco/pep/ | awk -F '.' '{print $1}' > out/sco.list
 qsub src/align.sh out/sco.list
 qsub src/trim.sh out/sco.list
 ```

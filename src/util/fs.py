@@ -1,26 +1,14 @@
-import argparse
-
-def main():
-	parser = argparse.ArgumentParser()
-	parser.add_argument("-i", "--input")
-	parser.add_argument("-o", "--output")
-	args = parser.parse_args()
-
-	id2seq = fasta2dict(args.input)
-	write_fasta(id2seq, args.output)
+from Bio import SeqIO
 
 
-def fasta2dict(fp):
-	dct = {}
-	with open(fp) as f:
-		tid = ""
-		for line in f:
-			if line[0] == ">":
-				tid = line.rstrip("\n")[1:]
-				dct[tid] = ""
-			else:
-				dct[tid] += line.rstrip()
-	return dct
+def fasta2dict(fasta):
+	id2seq = {}
+	desc2seq = {}
+	for record in SeqIO.parse(fasta, "fasta"):
+		_id, _desc, _seq = record.id, record.description, record.seq
+		id2seq[_id] = str(_seq)
+		desc2seq[_desc] = str(_seq)
+	return desc2seq
 
 
 def get_sp_name(string):
@@ -37,7 +25,3 @@ def write_fasta(dct, pth):
 			seq = dct[id]
 			f.write(">"+id+"\n")
 			f.write(seq+"\n")
-
-
-if __name__ == "__main__":
-	main()
