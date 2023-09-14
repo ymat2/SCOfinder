@@ -28,4 +28,4 @@ python3 src/pal2nal.py \
 	-c sco/cds/${seq_id}.cds.fa \
 	-o aln/${seq_id}
 
-rm aln/${seq_id}.concat.fa
+rm aln/${seq_id}.concat.aln.fa

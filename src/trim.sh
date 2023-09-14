@@ -43,7 +43,7 @@ if [ -s ./aln/${seq_id}.cds.aln.fa ]; then
 
 	singularity exec /usr/local/biotools/t/trimal:1.4.1--0 trimal \
 		-in trimal/${seq_id}.cds.aln.tmp.fa \
-		-out trimal/${seq_id}.cds.aln.trim.fa \
+		-out trimal/${seq_id}.cds.aln.nogap.fa \
 		-nogaps
 
 	rm trimal/${seq_id}.cds.aln.tmp.fa
