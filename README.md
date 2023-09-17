@@ -44,4 +44,7 @@ qsub src/detect_sco.sh
 ## alignment and trimming
 qsub src/align.sh out/sco.list
 qsub src/trim.sh out/sco.list
+
+## filter out trimed alignments
+qsub filt.sh
 ```
